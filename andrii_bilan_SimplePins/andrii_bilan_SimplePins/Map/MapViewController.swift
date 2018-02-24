@@ -11,7 +11,8 @@ import MapKit
 import CoreLocation
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UIPopoverPresentationControllerDelegate {
-
+    var fetchedResultsController = CoreDataManager.instance.fetchedResultsController(entityName: "User", keyForSort: "name")
+    
     @IBAction func currentLocation(_ sender: UIButton) {
         if (CLLocationManager.locationServicesEnabled()) {
             if locationManager == nil {

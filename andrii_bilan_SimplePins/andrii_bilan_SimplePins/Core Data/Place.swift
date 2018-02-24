@@ -12,5 +12,7 @@ import CoreData
 
 @objc(Place)
 public class Place: NSManagedObject {
-
+    convenience init() {
+        self.init(entity: CoreDataManager.instance.entityForName(entityName: "Place"), insertInto: CoreDataManager.instance.managedObjectContext)
+    }
 }
