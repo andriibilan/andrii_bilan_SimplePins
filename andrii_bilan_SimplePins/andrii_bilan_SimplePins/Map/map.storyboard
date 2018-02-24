@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UAX-Fm-YME">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Map View Controller-->
+        <scene sceneID="oXT-wb-K3s">
+            <objects>
+                <viewController id="UAX-Fm-YME" customClass="MapViewController" customModule="andrii_bilan_SimplePins" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mAc-HP-afo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ApB-14-L9l">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="kWx-RB-8CG" appends="YES" id="jAa-Gh-Sz8"/>
+                                </connections>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="St1-h2-Zup">
+                                <rect key="frame" x="16" y="582" width="71" height="55"/>
+                                <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="showUserInfo:" destination="UAX-Fm-YME" eventType="touchUpInside" id="WLa-MP-JJy"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6UW-Vs-BRV">
+                                <rect key="frame" x="282" y="582" width="77" height="55"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="currentLocation:" destination="UAX-Fm-YME" eventType="touchUpInside" id="fL5-dl-dKc"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="St1-h2-Zup" firstAttribute="leading" secondItem="nzF-wJ-W1D" secondAttribute="leading" constant="16" id="7HM-V4-KJC"/>
+                            <constraint firstItem="nzF-wJ-W1D" firstAttribute="bottom" secondItem="6UW-Vs-BRV" secondAttribute="bottom" constant="30" id="AED-go-DX7"/>
+                            <constraint firstItem="nzF-wJ-W1D" firstAttribute="trailing" secondItem="ApB-14-L9l" secondAttribute="trailing" id="BlI-DE-xff"/>
+                            <constraint firstItem="ApB-14-L9l" firstAttribute="top" secondItem="nzF-wJ-W1D" secondAttribute="top" id="JFA-Xr-0Wo"/>
+                            <constraint firstItem="nzF-wJ-W1D" firstAttribute="trailing" secondItem="6UW-Vs-BRV" secondAttribute="trailing" constant="16" id="JvV-oE-KJ3"/>
+                            <constraint firstItem="nzF-wJ-W1D" firstAttribute="bottom" secondItem="ApB-14-L9l" secondAttribute="bottom" id="Z8G-kc-oVE"/>
+                            <constraint firstItem="ApB-14-L9l" firstAttribute="leading" secondItem="nzF-wJ-W1D" secondAttribute="leading" id="dnZ-tr-uOC"/>
+                            <constraint firstItem="nzF-wJ-W1D" firstAttribute="bottom" secondItem="St1-h2-Zup" secondAttribute="bottom" constant="30" id="xP6-gZ-dqh"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="nzF-wJ-W1D"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="ApB-14-L9l" id="1hb-6a-2TG"/>
+                        <segue destination="WbH-a2-WOF" kind="show" identifier="showNewPlace" id="OSA-tK-Oex"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AMQ-gu-3pw" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="kWx-RB-8CG">
+                    <connections>
+                        <action selector="addPlace:" destination="UAX-Fm-YME" id="IP1-ik-aga"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="158" y="27"/>
+        </scene>
+        <!--newPlace-->
+        <scene sceneID="kdh-6l-5EG">
+            <objects>
+                <viewControllerPlaceholder storyboardName="newPlace" id="WbH-a2-WOF" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Me9-hl-Rys" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="627" y="623"/>
+        </scene>
+    </scenes>
+</document>
