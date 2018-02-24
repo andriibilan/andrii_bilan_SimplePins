@@ -14,16 +14,31 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var fetchedResultsController = CoreDataManager.instance.fetchedResultsController(entityName: "User", keyForSort: "name")
     
     @IBAction func currentLocation(_ sender: UIButton) {
-        if (CLLocationManager.locationServicesEnabled()) {
-            if locationManager == nil {
-                locationManager = CLLocationManager()
-            }
-            locationManager?.requestWhenInUseAuthorization()
+        self.locationManager.requestAlwaysAuthorization()
+        // For use in foreground
+        self.locationManager.requestWhenInUseAuthorization()
+        if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.requestAlwaysAuthorization()
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         }
+        locationManager.stopUpdatingLocation()
+        guard let locValue: CLLocationCoordinate2D = locationManager.location?.coordinate else { return }
+        let homeLocation = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude)
+        let regionRadius: CLLocationDistance = 200
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(homeLocation.coordinate,
+                                                                  regionRadius * 2.0, regionRadius * 2.0)
+        mapView.setRegion(coordinateRegion, animated: true)
+//        if (CLLocationManager.locationServicesEnabled()) {
+//            if locationManager == nil {
+//                locationManager = CLLocationManager()
+//            }
+//            locationManager?.requestWhenInUseAuthorization()
+//            locationManager.delegate = self
+//            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//            locationManager.requestAlwaysAuthorization()
+//            locationManager.startUpdatingLocation()
+//        }
     }
     
     @IBOutlet weak var mapView: MKMapView!
@@ -43,7 +58,26 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
-        
+        mapView.showsUserLocation = true
+       
+        //Check for Location Services
+        if (CLLocationManager.locationServicesEnabled()) {
+            locationManager = CLLocationManager()
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestAlwaysAuthorization()
+            locationManager.requestWhenInUseAuthorization()
+             }
+        //Zoom to user location
+//        let noLocation = CLLocationCoordinate2D()
+//        let viewRegion = MKCoordinateRegionMakeWithDistance(noLocation, 200, 200)
+//        mapView.setRegion(viewRegion, animated: false)
+
+        //DispatchQueue.main.async {
+        //    self.locationManager.startUpdatingLocation()
+       // }
+//
+//
         // Do any additional setup after loading the view.
     }
     
@@ -63,18 +97,21 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = locations.last
-        let center = CLLocationCoordinate2D(latitude: 56, longitude: 34)
-        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-        self.mapView.setRegion(region, animated: true)
-        if self.mapView.annotations.count != 0 {
-        //    annotation = self.mapView.annotations[0]
-        //    self.mapView.removeAnnotation(annotation)
-        }
-        let pointAnnotation = MKPointAnnotation()
-        pointAnnotation.coordinate = location!.coordinate
-        pointAnnotation.title = ""
-        mapView.addAnnotation(pointAnnotation)
+        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
+    
+//        let location = locations.last
+//        let center = CLLocationCoordinate2D(latitude: 56, longitude: 34)
+//        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+//        self.mapView.setRegion(region, animated: true)
+//        if self.mapView.annotations.count != 0 {
+//        //    annotation = self.mapView.annotations[0]
+//        //    self.mapView.removeAnnotation(annotation)
+//        }
+//        let pointAnnotation = MKPointAnnotation()
+//        pointAnnotation.coordinate = location!.coordinate
+//        pointAnnotation.title = ""
+//        mapView.addAnnotation(pointAnnotation)
     }
     
  
