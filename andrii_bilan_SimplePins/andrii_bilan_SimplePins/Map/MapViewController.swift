@@ -11,37 +11,32 @@ import MapKit
 import CoreLocation
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UIPopoverPresentationControllerDelegate {
+    var region: MKCoordinateRegion?
+    var locationManager: CLLocationManager!
+    var currentLocation: CLLocation?
+    var managerOfLocation: CLLocationManager!
+    var pressCoordinate: Location?
     var fetchedResultsController = CoreDataManager.instance.fetchedResultsController(entityName: "User", keyForSort: "name")
     
     @IBAction func currentLocation(_ sender: UIButton) {
-        self.locationManager.requestAlwaysAuthorization()
-        // For use in foreground
-        self.locationManager.requestWhenInUseAuthorization()
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager.startUpdatingLocation()
-        }
-        locationManager.stopUpdatingLocation()
-        guard let locValue: CLLocationCoordinate2D = locationManager.location?.coordinate else { return }
-        let homeLocation = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude)
-        let regionRadius: CLLocationDistance = 200
-        let coordinateRegion = MKCoordinateRegionMakeWithDistance(homeLocation.coordinate,
-                                                                  regionRadius * 2.0, regionRadius * 2.0)
-        mapView.setRegion(coordinateRegion, animated: true)
-//        if (CLLocationManager.locationServicesEnabled()) {
-//            if locationManager == nil {
-//                locationManager = CLLocationManager()
-//            }
-//            locationManager?.requestWhenInUseAuthorization()
+//        self.locationManager.requestAlwaysAuthorization()
+//        self.locationManager.requestWhenInUseAuthorization()
+//        if CLLocationManager.locationServicesEnabled() {
 //            locationManager.delegate = self
-//            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-//            locationManager.requestAlwaysAuthorization()
+//            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
 //            locationManager.startUpdatingLocation()
 //        }
+//        locationManager.stopUpdatingLocation()
+        guard let locValue: CLLocationCoordinate2D = locationManager.location?.coordinate else { return }
+        currentLocation = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude)
+        let regionRadius: CLLocationDistance = 200
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance((currentLocation?.coordinate)!,
+                                                                  regionRadius * 2.0, regionRadius * 2.0)
+        mapView.setRegion(coordinateRegion, animated: true)
     }
-    
+
     @IBOutlet weak var mapView: MKMapView!
+    
     @IBAction func showUserInfo(_ sender: UIButton) {
         let popOverVC = UIStoryboard(name: "user", bundle: nil).instantiateViewController(withIdentifier: "popUpID") as! UserInfoViewController
         self.addChildViewController(popOverVC)
@@ -49,43 +44,48 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         self.view.addSubview(popOverVC.view)
         popOverVC.didMove(toParentViewController: self)
     }
-    
-    
-    var region: MKCoordinateRegion?
-    var locationManager: CLLocationManager!
-    var currentLocation: CLLocation?
   
+    func locationManagerConfigurate() {
+        if (CLLocationManager.locationServicesEnabled()) {
+            locationManager = CLLocationManager()
+            locationManager.delegate = self
+            //locationManager.requestLocation()
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestAlwaysAuthorization()
+            if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+                locationManager.startUpdatingLocation()
+            } else {
+                locationManager!.requestWhenInUseAuthorization()
+            }
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
         mapView.showsUserLocation = true
-       
-        //Check for Location Services
-        if (CLLocationManager.locationServicesEnabled()) {
-            locationManager = CLLocationManager()
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.requestAlwaysAuthorization()
-            locationManager.requestWhenInUseAuthorization()
-             }
-        //Zoom to user location
-//        let noLocation = CLLocationCoordinate2D()
-//        let viewRegion = MKCoordinateRegionMakeWithDistance(noLocation, 200, 200)
-//        mapView.setRegion(viewRegion, animated: false)
-
-        //DispatchQueue.main.async {
-        //    self.locationManager.startUpdatingLocation()
-       // }
-//
-//
-        // Do any additional setup after loading the view.
+        locationManagerConfigurate()
+        
+//        if (CLLocationManager.locationServicesEnabled()) {
+//            locationManager = CLLocationManager()
+//            locationManager.delegate = self
+//            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//            locationManager.requestAlwaysAuthorization()
+//            locationManager.requestWhenInUseAuthorization()
+//        }
     }
     
     @IBAction func addPlace(_ sender: UILongPressGestureRecognizer) {
+        locationManager.stopUpdatingLocation()
+        let pointAfterPress = sender.location(in: mapView)
+        let location = mapView.convert(pointAfterPress, toCoordinateFrom: mapView)
+        print("location: \(location.latitude) and \(location.longitude)")
         let addPlaceAlertController = UIAlertController(title: "New Place", message: "Do you want add new place?", preferredStyle: .alert)
         
         addPlaceAlertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (alert) in
-            self.performSegue(withIdentifier: "showNewPlace", sender: nil)
+            self.pressCoordinate = Location(latitude: location.latitude, longitude: location.longitude)
+            self.performSegue(withIdentifier: "showNewPlace", sender: self.pressCoordinate)
             print("OK")
         }))
         addPlaceAlertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (alert) in
@@ -99,20 +99,28 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         print("locations = \(locValue.latitude) \(locValue.longitude)")
-    
-//        let location = locations.last
-//        let center = CLLocationCoordinate2D(latitude: 56, longitude: 34)
-//        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-//        self.mapView.setRegion(region, animated: true)
-//        if self.mapView.annotations.count != 0 {
-//        //    annotation = self.mapView.annotations[0]
-//        //    self.mapView.removeAnnotation(annotation)
-//        }
-//        let pointAnnotation = MKPointAnnotation()
-//        pointAnnotation.coordinate = location!.coordinate
-//        pointAnnotation.title = ""
-//        mapView.addAnnotation(pointAnnotation)
+//        _ = locations.last as! CLLocation
+//        let currentLocation: CLLocation = locations[0] as CLLocation
+//        let myAnnotation: MKPointAnnotation = MKPointAnnotation()
+//        myAnnotation.coordinate = CLLocationCoordinate2DMake(currentLocation.coordinate.latitude, currentLocation.coordinate.longitude)
+//        myAnnotation.title = "Current Location"
+//        mapView.addAnnotation(myAnnotation)
+
+    }
+
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error \(error)")
     }
     
- 
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       if let identifier = segue.identifier {
+            switch identifier {
+            case "showNewPlace":
+                let newPlaceVC = segue.destination as! AddNewPlaceTableVC
+                newPlaceVC.placesLocation = pressCoordinate as! Location
+            default: break
+            }
+        }
+    }
 }
