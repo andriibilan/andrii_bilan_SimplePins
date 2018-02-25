@@ -28,16 +28,6 @@
                                             <constraint firstAttribute="width" secondItem="UMU-0p-Npa" secondAttribute="height" multiplier="10:11" id="rIf-sl-bru"/>
                                         </constraints>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SSU-lo-pyp">
-                                        <rect key="frame" x="0.0" y="274" width="245" height="46"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="46" id="mP3-n4-sqr"/>
-                                        </constraints>
-                                        <state key="normal" title="Log out"/>
-                                        <connections>
-                                            <action selector="userLogout:" destination="tUs-pr-CQ4" eventType="touchUpInside" id="8UQ-9P-0gL"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mlO-Ym-hX2">
                                         <rect key="frame" x="189" y="8" width="48" height="30"/>
                                         <state key="normal" title="Cancel"/>
@@ -46,25 +36,39 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="email" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sFg-Hi-tNV">
-                                        <rect key="frame" x="0.0" y="197" width="245" height="40"/>
+                                        <rect key="frame" x="0.0" y="197" width="245" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YVe-5j-le0">
+                                        <rect key="frame" x="0.0" y="276" width="245" height="44"/>
+                                        <color key="backgroundColor" name="selectedMenuItemColor" catalog="System" colorSpace="catalog"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="B7g-Rr-oKZ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Log out">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="logOut:" destination="tUs-pr-CQ4" eventType="touchUpInside" id="pt3-za-gtQ"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.55634254220000001" green="0.97934550050000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="SSU-lo-pyp" firstAttribute="top" secondItem="sFg-Hi-tNV" secondAttribute="bottom" constant="37" id="05Q-M0-iNE"/>
                                     <constraint firstAttribute="height" constant="320" id="3Ck-Gx-52n"/>
                                     <constraint firstAttribute="trailing" secondItem="mlO-Ym-hX2" secondAttribute="trailing" constant="8" id="6ci-iS-ePf"/>
+                                    <constraint firstItem="YVe-5j-le0" firstAttribute="top" secondItem="sFg-Hi-tNV" secondAttribute="bottom" constant="58.5" id="BpT-H5-qSN"/>
                                     <constraint firstItem="UMU-0p-Npa" firstAttribute="top" secondItem="JHQ-pT-RKC" secondAttribute="top" id="EqR-aw-Mjj"/>
                                     <constraint firstAttribute="trailing" secondItem="UMU-0p-Npa" secondAttribute="trailing" constant="73" id="Lrk-NU-2Mf"/>
+                                    <constraint firstAttribute="bottom" secondItem="YVe-5j-le0" secondAttribute="bottom" id="NLY-ZX-yl7"/>
                                     <constraint firstItem="sFg-Hi-tNV" firstAttribute="leading" secondItem="JHQ-pT-RKC" secondAttribute="leading" id="OZr-Gu-WNY"/>
-                                    <constraint firstAttribute="bottom" secondItem="SSU-lo-pyp" secondAttribute="bottom" id="aKa-hV-mza"/>
-                                    <constraint firstItem="SSU-lo-pyp" firstAttribute="leading" secondItem="JHQ-pT-RKC" secondAttribute="leading" id="efv-5r-Upg"/>
+                                    <constraint firstItem="YVe-5j-le0" firstAttribute="leading" secondItem="JHQ-pT-RKC" secondAttribute="leading" id="TZB-PW-ZJo"/>
                                     <constraint firstAttribute="trailing" secondItem="sFg-Hi-tNV" secondAttribute="trailing" id="g5h-g4-8Gv"/>
+                                    <constraint firstAttribute="trailing" secondItem="YVe-5j-le0" secondAttribute="trailing" id="jBz-TF-7U2"/>
                                     <constraint firstItem="mlO-Ym-hX2" firstAttribute="top" secondItem="JHQ-pT-RKC" secondAttribute="top" constant="8" id="jnl-Rf-7xW"/>
-                                    <constraint firstAttribute="trailing" secondItem="SSU-lo-pyp" secondAttribute="trailing" id="ukY-La-ece"/>
                                     <constraint firstItem="UMU-0p-Npa" firstAttribute="leading" secondItem="JHQ-pT-RKC" secondAttribute="leading" constant="72" id="v8d-87-MRa"/>
                                     <constraint firstAttribute="width" constant="245" id="yrA-5h-Lfx"/>
                                 </constraints>
@@ -95,11 +99,20 @@
                         <outlet property="userName" destination="Piy-Dw-EnO" id="tPl-L6-yf2"/>
                         <outlet property="userProfileImage" destination="UMU-0p-Npa" id="VNU-c1-J8M"/>
                         <outlet property="userinfo" destination="JHQ-pT-RKC" id="Ql1-cp-YMX"/>
+                        <segue destination="YP4-bb-3Ot" kind="show" identifier="showLogOut" id="f0C-Tx-Zc3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ItB-Dv-JgY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-930" y="-459"/>
+            <point key="canvasLocation" x="-930.39999999999998" y="-459.22038980509751"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="zv7-N7-1Xz">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="YP4-bb-3Ot" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w6W-1H-fdO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-302" y="-329"/>
         </scene>
     </scenes>
 </document>

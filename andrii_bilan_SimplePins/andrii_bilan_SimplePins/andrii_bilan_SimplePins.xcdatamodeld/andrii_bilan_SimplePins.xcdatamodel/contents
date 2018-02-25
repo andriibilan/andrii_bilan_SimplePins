@@ -13,10 +13,11 @@
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="photo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="relationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Place" inverseName="relationship" inverseEntity="Place" syncable="YES"/>
     </entity>
     <elements>
-        <element name="User" positionX="-63" positionY="-18" width="128" height="103"/>
         <element name="Place" positionX="162" positionY="5" width="128" height="148"/>
+        <element name="User" positionX="-63" positionY="-18" width="128" height="120"/>
     </elements>
 </model>

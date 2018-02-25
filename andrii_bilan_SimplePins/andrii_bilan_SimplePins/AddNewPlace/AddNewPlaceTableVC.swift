@@ -10,6 +10,7 @@ import UIKit
 
 class AddNewPlaceTableVC: UITableViewController {
     
+
     var placesLocation: Location?
     var place: Place?
     @IBOutlet weak var placeName: UITextField!

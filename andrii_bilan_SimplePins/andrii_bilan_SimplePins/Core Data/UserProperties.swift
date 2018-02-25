@@ -12,16 +12,17 @@ import CoreData
 
 
 extension User {
-
+    
     @nonobjc public class func fetchRequest() -> NSFetchRequest<User> {
         return NSFetchRequest<User>(entityName: "User")
     }
-
+    
     @NSManaged public var name: String?
     @NSManaged public var email: String?
     @NSManaged public var photo: String?
+    @NSManaged public var userID: String?
     @NSManaged public var relationship: NSSet?
-
+    
 }
 
 // MARK: Generated accessors for relationship

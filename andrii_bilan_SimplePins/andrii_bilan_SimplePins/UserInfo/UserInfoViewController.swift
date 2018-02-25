@@ -7,29 +7,31 @@
 //
 
 import UIKit
+import FBSDKLoginKit
 
 class UserInfoViewController: UIViewController {
-
+    
     @IBOutlet weak var userProfileImage: UIImageView!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var userEmail: UILabel!
+    @IBOutlet weak var userinfo: UIView!
+    
+    @IBAction func logOut(_ sender: UIButton) {
+        let manager = FBSDKLoginManager()
+        manager.logOut()
+        performSegue(withIdentifier: "showLogOut", sender: nil)
+    }
     
     @IBAction func cancelUserInfo(_ sender: UIButton) {
-          self.removeAnimate()
-        //self.view.removeFromSuperview()
+        self.removeAnimate()
     }
     
-    @IBOutlet weak var userinfo: UIView!
-    @IBAction func userLogout(_ sender: UIButton) {
-        
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-self.showAnimate()
-        // Do any additional setup after loading the view.
+        self.showAnimate()
     }
-
+    
     func showAnimate() {
         self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
         self.view.alpha = 0.0;
@@ -49,5 +51,5 @@ self.showAnimate()
             }
         });
     }
-
+    
 }

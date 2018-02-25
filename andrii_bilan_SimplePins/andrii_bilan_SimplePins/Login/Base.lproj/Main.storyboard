@@ -19,30 +19,40 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6xB-5y-X5O">
-                                <rect key="frame" x="156" y="480" width="62" height="51"/>
+                                <rect key="frame" x="156" y="83" width="62" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Utd-Bm-N2G">
+                                <rect key="frame" x="0.0" y="587" width="375" height="80"/>
+                                <color key="backgroundColor" name="selectedMenuItemColor" catalog="System" colorSpace="catalog"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="jBn-qh-QJ9"/>
+                                </constraints>
+                                <state key="normal" image="sign-in-facebook">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
-                                    <segue destination="TUL-8W-JKS" kind="show" id="x0e-fg-qR9"/>
+                                    <action selector="faceBookLogin:" destination="SGv-TJ-NOu" eventType="touchUpInside" id="plH-E3-aiE"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="6yB-Iw-E9v" firstAttribute="trailing" secondItem="Utd-Bm-N2G" secondAttribute="trailing" id="1I1-Cv-Yy8"/>
+                            <constraint firstItem="Utd-Bm-N2G" firstAttribute="leading" secondItem="6yB-Iw-E9v" secondAttribute="leading" id="7Xg-Ko-laj"/>
+                            <constraint firstItem="6yB-Iw-E9v" firstAttribute="bottom" secondItem="Utd-Bm-N2G" secondAttribute="bottom" id="GDR-eD-gxl"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6yB-Iw-E9v"/>
                     </view>
+                    <connections>
+                        <segue destination="TUL-8W-JKS" kind="show" identifier="showMap" id="sGv-Sn-Wdg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5AB-EX-pSu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1605.5999999999999" y="-817.24137931034488"/>
-        </scene>
-        <!--map-->
-        <scene sceneID="ODr-X4-HVs">
-            <objects>
-                <viewControllerPlaceholder storyboardName="map" id="lvS-qo-4Er" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MnJ-k3-7Hd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2384" y="-844"/>
         </scene>
         <!--map-->
         <scene sceneID="ZXX-vY-lWP">
@@ -50,7 +60,10 @@
                 <viewControllerPlaceholder storyboardName="map" id="TUL-8W-JKS" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uZQ-80-pLb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2098" y="-722"/>
+            <point key="canvasLocation" x="2413" y="-818"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="sign-in-facebook" width="1071" height="205"/>
+    </resources>
 </document>
