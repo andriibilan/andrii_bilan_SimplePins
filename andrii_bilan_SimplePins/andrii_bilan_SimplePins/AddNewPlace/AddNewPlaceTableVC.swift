@@ -7,10 +7,8 @@
 //
 
 import UIKit
-
+import FBSDKLoginKit
 class AddNewPlaceTableVC: UITableViewController {
-    
-
     var placesLocation: Location?
     var place: Place?
     @IBOutlet weak var placeName: UITextField!
@@ -41,22 +39,15 @@ class AddNewPlaceTableVC: UITableViewController {
             place.latitude = (placesLocation?.latitude)!
             place.longitude = (placesLocation?.longitude)!
             place.date = Date() as NSDate
+            place.userID = FBSDKAccessToken.current().userID
             CoreDataManager.instance.saveContext()
-            print("Place have this Data:\(place.debugDescription)")
         }
         return true
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-
-  
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {

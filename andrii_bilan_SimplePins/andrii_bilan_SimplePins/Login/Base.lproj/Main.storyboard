@@ -18,14 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6xB-5y-X5O">
-                                <rect key="frame" x="156" y="83" width="62" height="51"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Utd-Bm-N2G">
-                                <rect key="frame" x="0.0" y="587" width="375" height="80"/>
+                                <rect key="frame" x="0.0" y="293" width="375" height="80"/>
                                 <color key="backgroundColor" name="selectedMenuItemColor" catalog="System" colorSpace="catalog"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="jBn-qh-QJ9"/>
@@ -42,7 +36,8 @@
                         <constraints>
                             <constraint firstItem="6yB-Iw-E9v" firstAttribute="trailing" secondItem="Utd-Bm-N2G" secondAttribute="trailing" id="1I1-Cv-Yy8"/>
                             <constraint firstItem="Utd-Bm-N2G" firstAttribute="leading" secondItem="6yB-Iw-E9v" secondAttribute="leading" id="7Xg-Ko-laj"/>
-                            <constraint firstItem="6yB-Iw-E9v" firstAttribute="bottom" secondItem="Utd-Bm-N2G" secondAttribute="bottom" id="GDR-eD-gxl"/>
+                            <constraint firstItem="Utd-Bm-N2G" firstAttribute="centerX" secondItem="vpt-88-4IP" secondAttribute="centerX" id="FV8-vR-xVd"/>
+                            <constraint firstItem="Utd-Bm-N2G" firstAttribute="centerY" secondItem="vpt-88-4IP" secondAttribute="centerY" id="RQe-wV-HF1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6yB-Iw-E9v"/>
                     </view>

@@ -27,9 +27,9 @@ class CoreDataManager {
         let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataManager.instance.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
         return fetchedResultsController
     }
-
+    
     // MARK: - Core Data stack
-      lazy var applicationDocumentsDirectory: NSURL = {
+    lazy var applicationDocumentsDirectory: NSURL = {
         let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return urls[urls.count-1] as NSURL
     }()
@@ -56,6 +56,7 @@ class CoreDataManager {
         }
         return coordinator
     }()
+    
     lazy var managedObjectContext: NSManagedObjectContext = {
         let coordinator = self.persistentStoreCoordinator
         var managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)

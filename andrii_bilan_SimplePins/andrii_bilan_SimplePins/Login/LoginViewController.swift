@@ -10,8 +10,8 @@ import FBSDKLoginKit
 import FBSDKCoreKit
 
 class LoginViewController: UIViewController {
+var fetchedResultsController = CoreDataManager.instance.fetchedResultsController(entityName: "User", keyForSort: "name")
     var user: User?
-    
     @IBAction func faceBookLogin(_ sender: UIButton) {
         let fbLoginManager = FBSDKLoginManager()
         fbLoginManager.logIn(withReadPermissions: ["public_profile", "email"], from: self) { (result, error) in
@@ -20,7 +20,6 @@ class LoginViewController: UIViewController {
                 return
             }
             self.fetchProfile()
-            print("`````\(FBSDKAccessToken.current().description)")
             self.performSegue(withIdentifier: "showMap", sender: nil)
         }
     }
@@ -28,18 +27,14 @@ class LoginViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         if(FBSDKAccessToken.current() != nil) {
-            // logged in
-            print("```````logged in")
             performSegue(withIdentifier: "showMap", sender: nil)
         } else {
-            print("``````not logged in")
-            // not logged in
+            print("not logged in")
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
     
     func fetchProfile() {
@@ -50,17 +45,30 @@ class LoginViewController: UIViewController {
                 return
             }
             guard let userInfo = result as? [String:Any] else { return }
-            self.addUserToCoreData(userInfo)
-//            if let imageURL = ((userInfo["picture"] as? [String: Any])?["data"] as? [String: Any])?["url"] as? String {
-//                let profileImageURL = imageURL
-//                print(imageURL)
-//                let url = URL(string: profileImageURL)
-//                let data = try? Data(contentsOf: url!)
-//               //     self.profileImage.image = UIImage(data: data!)
-//            }
+            if self.checkIfUserEverLogin(userId: (userInfo["id"] as? String)!) {
+                self.performSegue(withIdentifier: "showMap", sender: nil)
+            } else {
+                 self.addUserToCoreData(userInfo)
+            }
         }
     }
     
+    func checkIfUserEverLogin(userId: String) -> Bool {
+        let predicate = NSPredicate(format: "userID == %@", userId)
+        let fetchRequest = fetchedResultsController.fetchRequest
+          fetchRequest.predicate = predicate
+        var userArray:[User] = []
+        do {
+            userArray = (try CoreDataManager.instance.managedObjectContext.fetch(fetchRequest) as? [User])!
+        } catch {
+            print("Error fetch")
+        }
+        if userArray.isEmpty {
+            return false
+        }
+        return true
+    }
+
     func addUserToCoreData(_ userInfo: [String: Any]) {
         if  user == nil {
             user = User()
@@ -72,7 +80,6 @@ class LoginViewController: UIViewController {
             user.photo = imageURL
             user.userID = userInfo["id"] as? String
             CoreDataManager.instance.saveContext()
-            print("``````````User have this Data:\(user.debugDescription)")
         }
     }
 }

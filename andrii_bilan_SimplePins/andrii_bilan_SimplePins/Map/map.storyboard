@@ -13,7 +13,7 @@
         <!--Map View Controller-->
         <scene sceneID="oXT-wb-K3s">
             <objects>
-                <viewController id="UAX-Fm-YME" customClass="MapViewController" customModule="andrii_bilan_SimplePins" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mapVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="UAX-Fm-YME" customClass="MapViewController" customModule="andrii_bilan_SimplePins" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mAc-HP-afo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -2,7 +2,7 @@
 //  User+CoreDataClass.swift
 //  andrii_bilan_SimplePins
 //
-//  Created by Andrii on 2/24/18.
+//  Created by Andrii on 2/25/18.
 //  Copyright © 2018 Andrii. All rights reserved.
 //
 //
