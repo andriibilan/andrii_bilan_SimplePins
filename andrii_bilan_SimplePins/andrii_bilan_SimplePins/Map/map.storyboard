@@ -25,18 +25,32 @@
                                     <outletCollection property="gestureRecognizers" destination="kWx-RB-8CG" appends="YES" id="jAa-Gh-Sz8"/>
                                 </connections>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="St1-h2-Zup">
-                                <rect key="frame" x="16" y="582" width="71" height="55"/>
-                                <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="St1-h2-Zup" customClass="MyButton" customModule="andrii_bilan_SimplePins" customModuleProvider="target">
+                                <rect key="frame" x="16" y="577" width="70" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="nVa-qE-jIb"/>
+                                    <constraint firstAttribute="width" constant="70" id="uMk-Nf-Omc"/>
+                                </constraints>
+                                <color key="tintColor" name="selectedMenuItemColor" catalog="System" colorSpace="catalog"/>
+                                <state key="normal" image="rsz_1rsz_user"/>
+                                <state key="selected" image="rsz_1rsz_user"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="showUserInfo:" destination="UAX-Fm-YME" eventType="touchUpInside" id="WLa-MP-JJy"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6UW-Vs-BRV">
-                                <rect key="frame" x="282" y="582" width="77" height="55"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <state key="normal" title="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6UW-Vs-BRV" customClass="MyButton" customModule="andrii_bilan_SimplePins" customModuleProvider="target">
+                                <rect key="frame" x="289" y="577" width="70" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="F1b-Eg-8vG"/>
+                                    <constraint firstAttribute="width" constant="70" id="Fxy-pr-QgG"/>
+                                </constraints>
+                                <state key="normal" image="rsz_unnamed"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="currentLocation:" destination="UAX-Fm-YME" eventType="touchUpInside" id="fL5-dl-dKc"/>
                                 </connections>
@@ -45,13 +59,13 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="St1-h2-Zup" firstAttribute="leading" secondItem="nzF-wJ-W1D" secondAttribute="leading" constant="16" id="7HM-V4-KJC"/>
-                            <constraint firstItem="nzF-wJ-W1D" firstAttribute="bottom" secondItem="6UW-Vs-BRV" secondAttribute="bottom" constant="30" id="AED-go-DX7"/>
+                            <constraint firstItem="nzF-wJ-W1D" firstAttribute="bottom" secondItem="6UW-Vs-BRV" secondAttribute="bottom" constant="20" id="AED-go-DX7"/>
                             <constraint firstItem="nzF-wJ-W1D" firstAttribute="trailing" secondItem="ApB-14-L9l" secondAttribute="trailing" id="BlI-DE-xff"/>
                             <constraint firstItem="ApB-14-L9l" firstAttribute="top" secondItem="nzF-wJ-W1D" secondAttribute="top" id="JFA-Xr-0Wo"/>
                             <constraint firstItem="nzF-wJ-W1D" firstAttribute="trailing" secondItem="6UW-Vs-BRV" secondAttribute="trailing" constant="16" id="JvV-oE-KJ3"/>
                             <constraint firstItem="nzF-wJ-W1D" firstAttribute="bottom" secondItem="ApB-14-L9l" secondAttribute="bottom" id="Z8G-kc-oVE"/>
                             <constraint firstItem="ApB-14-L9l" firstAttribute="leading" secondItem="nzF-wJ-W1D" secondAttribute="leading" id="dnZ-tr-uOC"/>
-                            <constraint firstItem="nzF-wJ-W1D" firstAttribute="bottom" secondItem="St1-h2-Zup" secondAttribute="bottom" constant="30" id="xP6-gZ-dqh"/>
+                            <constraint firstItem="nzF-wJ-W1D" firstAttribute="bottom" secondItem="St1-h2-Zup" secondAttribute="bottom" constant="20" id="xP6-gZ-dqh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nzF-wJ-W1D"/>
                     </view>
@@ -78,4 +92,8 @@
             <point key="canvasLocation" x="627" y="623"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="rsz_1rsz_user" width="96" height="96"/>
+        <image name="rsz_unnamed" width="75" height="75"/>
+    </resources>
 </document>

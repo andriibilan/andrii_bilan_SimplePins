@@ -13,7 +13,7 @@ class AddNewPlaceTableVC: UITableViewController {
     var place: Place?
     @IBOutlet weak var placeName: UITextField!
     @IBOutlet weak var placeDescription: UITextView?
-    @IBOutlet weak var placePhoto: UICollectionView?
+
     
     @IBAction func saveNewPlace(_ sender: UIButton) {
     if savePlace() {
@@ -51,7 +51,7 @@ class AddNewPlaceTableVC: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 3
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

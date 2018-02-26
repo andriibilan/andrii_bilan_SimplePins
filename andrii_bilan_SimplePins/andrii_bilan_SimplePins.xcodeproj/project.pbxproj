@@ -21,6 +21,8 @@
 		B5D8015920435F01008726E3 /* PlaceProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D8015720435F01008726E3 /* PlaceProperties.swift */; };
 		B5D8015C20437E5D008726E3 /* UserClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D8015A20437E5D008726E3 /* UserClass.swift */; };
 		B5D8015D20437E5D008726E3 /* UserProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D8015B20437E5D008726E3 /* UserProperties.swift */; };
+		B5D8015F2043C81F008726E3 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D8015E2043C81F008726E3 /* RoundButton.swift */; };
+		B5D801612043D098008726E3 /* ViewConfigurate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D801602043D098008726E3 /* ViewConfigurate.swift */; };
 		B5E7CE8E2040C4CB00D38D3E /* map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5E7CE8D2040C4CB00D38D3E /* map.storyboard */; };
 		B5E7CE902040EA7900D38D3E /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E7CE912040EA7900D38D3E /* FBSDKLoginKit.framework */; };
 		B5E7CE932040F85900D38D3E /* user.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5E7CE922040F85900D38D3E /* user.storyboard */; };
@@ -48,6 +50,8 @@
 		B5D8015720435F01008726E3 /* PlaceProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceProperties.swift; sourceTree = "<group>"; };
 		B5D8015A20437E5D008726E3 /* UserClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserClass.swift; sourceTree = "<group>"; };
 		B5D8015B20437E5D008726E3 /* UserProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProperties.swift; sourceTree = "<group>"; };
+		B5D8015E2043C81F008726E3 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
+		B5D801602043D098008726E3 /* ViewConfigurate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConfigurate.swift; sourceTree = "<group>"; };
 		B5E7CE8D2040C4CB00D38D3E /* map.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = map.storyboard; sourceTree = "<group>"; };
 		B5E7CE8F2040DBE600D38D3E /* andrii_bilan_SimplePins.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = andrii_bilan_SimplePins.entitlements; sourceTree = "<group>"; };
 		B5E7CE912040EA7900D38D3E /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -179,6 +183,8 @@
 				B5A8D59420407E7300CD3A03 /* LaunchScreen.storyboard */,
 				B5A8D59220407E7300CD3A03 /* Assets.xcassets */,
 				B5A8D58820407E7300CD3A03 /* AppDelegate.swift */,
+				B5D8015E2043C81F008726E3 /* RoundButton.swift */,
+				B5D801602043D098008726E3 /* ViewConfigurate.swift */,
 			);
 			path = SupportFiles;
 			sourceTree = "<group>";
@@ -346,10 +352,12 @@
 			files = (
 				B5D8015820435F01008726E3 /* Place.swift in Sources */,
 				B5A8D5A82040B6A100CD3A03 /* LoginViewController.swift in Sources */,
+				B5D801612043D098008726E3 /* ViewConfigurate.swift in Sources */,
 				B5A8D59120407E7300CD3A03 /* andrii_bilan_SimplePins.xcdatamodeld in Sources */,
 				B5D8015C20437E5D008726E3 /* UserClass.swift in Sources */,
 				B5E7CEC12041465A00D38D3E /* FileManager.swift in Sources */,
 				B5E7CE9B2041194000D38D3E /* AddNewPlaceTableVC.swift in Sources */,
+				B5D8015F2043C81F008726E3 /* RoundButton.swift in Sources */,
 				B5D8015920435F01008726E3 /* PlaceProperties.swift in Sources */,
 				B50997D72042341700F8E02F /* Location.swift in Sources */,
 				B5E7CE952040F87100D38D3E /* UserInfoViewController.swift in Sources */,

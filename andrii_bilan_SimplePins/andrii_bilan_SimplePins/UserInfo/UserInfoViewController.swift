@@ -46,6 +46,7 @@ class UserInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        userProfileImage.layer.cornerRadius = 20
         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         self.showAnimate()
         fetchProfile()

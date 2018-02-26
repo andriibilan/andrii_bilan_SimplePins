@@ -18,6 +18,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var placeArray:[Place] = []
     var fetchedResultsController = CoreDataManager.instance.fetchedResultsController(entityName: "Place", keyForSort: "name")
     
+    @IBOutlet weak var proffileButtonImage: MyButton!
     @IBOutlet weak var mapView: MKMapView!
     @IBAction func currentLocation(_ sender: UIButton) {
         guard locationManager != nil else {
@@ -122,7 +123,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 viewAnnotation = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 viewAnnotation.canShowCallout = true
                 viewAnnotation.calloutOffset = CGPoint(x: -5, y: 5)
-                viewAnnotation.rightCalloutAccessoryView = UIButton(type: .detailDisclosure) as UIView
                 viewAnnotation.pinTintColor = #colorLiteral(red: 0.9201840758, green: 0.2923389375, blue: 0.4312838316, alpha: 1)
                 let longGesture = UILongPressGestureRecognizer()
                 longGesture.addTarget(self, action:  #selector(MapViewController.deletePin))
@@ -193,7 +193,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         mapView.removeAnnotations(self.mapView.annotations)
         addAnnotations(coords: placeArray)
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
             switch identifier {
